@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<job  maxFilesPerProcess="5" simulateSubmission="false" fileListSyntax="xrootd">
+    
+    <command>
+        starver SL19b
+	    ./runv0.csh 0 &opt_weight; &sys_err_opt; $FILELIST $JOBID &lamtype; 
+        
+    </command>
+    
+    <SandBox installer="ZIP">
+        <Package name="pla_&lamtype;">
+            <File>file:/star/u/brian40/PicoDst/PicoDst_NoMaker/test_KFParticle_gamma/runv0.csh</File>
+            <File>file:/star/u/brian40/PicoDst/PicoDst_NoMaker/test_KFParticle_gamma/StRoot/</File>
+            <File>file:/star/u/brian40/PicoDst/PicoDst_NoMaker/test_KFParticle_gamma/Results_&lamtype;_18/cen*.weight_112_module.root</File>
+            <File>file:/star/u/brian40/PicoDst/PicoDst_NoMaker/test_KFParticle_gamma/Results_&lamtype;_18/EPD_weights_27GeV/*root</File>
+            <File>file:/star/u/brian40/PicoDst/PicoDst_NoMaker/test_KFParticle_gamma/efficiency_final_lam.txt</File>
+            <File>file:/star/u/brian40/PicoDst/PicoDst_NoMaker/test_KFParticle_gamma/efficiency_final_antilam.txt</File>
+            <File>file:/star/u/brian40/PicoDst/PicoDst_NoMaker/test_KFParticle_gamma/proton_efficiency_coefficients.txt</File>
+            <File>file:/star/u/brian40/PicoDst/PicoDst_NoMaker/test_KFParticle_gamma/proton_tofefficiency_coefficients.txt</File>
+            <File>file:/star/u/brian40/PicoDst/PicoDst_NoMaker/test_KFParticle_gamma/Gamma_112_module.C</File>
+            <File>file:/star/u/brian40/PicoDst/PicoDst_NoMaker/test_KFParticle_gamma/Gamma_112_module.h</File>
+            <File>file:/star/u/brian40/PicoDst/PicoDst_NoMaker/test_KFParticle_gamma/RunGammaAnalyzer.C</File>
+            <File>file:/star/u/brian40/PicoDst/PicoDst_NoMaker/test_KFParticle_gamma/namespaces/</File>
+        </Package>
+    </SandBox>
+    
+    
+    <Generator>
+        <Location>./condor_files/</Location>
+        <ScriptLocation>./condor_files/scripts</ScriptLocation>
+    </Generator>
+    
+    <!--<input URL="catalog:star.bnl.gov?storage!=hpss,production=P16id,trgsetupname~AuAu_200_production_low_2014,filetype=daq_reco_picoDst,filename~st_physics_15&daynum;" nFiles="all"/>-->
+    <!--<input URL="catalog:star.bnl.gov?production=P19ib,filetype=daq_reco_picoDst,trgsetupname~27GeV_production_2018,sanity=1,tpx=1,storage!=hpss,filename~st_physics_1914" nFiles="all"/>-->
+    <input URL="file:/star/u/brian40/PicoDst/PicoDst_NoMaker/test_KFParticle/trees/15/*tree.root" nFiles="all"/>
+    <output fromScratch="*.root" toURL="file:/star/u/brian40/PicoDst/PicoDst_NoMaker/test_KFParticle_gamma/output/&lamtype;/" />
+    
+    <stdout URL="file:/star/u/brian40/PicoDst/PicoDst_NoMaker/test_KFParticle_gamma/output/&lamtype;_debug/$JOBID.out"/>
+    <stderr URL="file:/star/u/brian40/PicoDst/PicoDst_NoMaker/test_KFParticle_gamma/output/&lamtype;_debug/$JOBID.err"/>
+</job>

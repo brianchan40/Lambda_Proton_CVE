@@ -1,0 +1,11 @@
+cen*.weight*
+condor_files/
+output/
+pla_lam*
+Results_lam_18/
+*.d
+*.so
+running.txt
+Sample/
+temp/
+.vscode/
